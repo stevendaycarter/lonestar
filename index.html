@@ -3,38 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SDC</title>
+<title>SDC2</title>
 <style>
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    display: grid;
+    place-items: center; /* centers vertically and horizontally */
+    text-align: center;
+    background: #fff; /* optional, change as needed */
   }
 
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* vertical centering */
-    align-items: center;     /* horizontal centering */
-  }
-
-  .photo {
-    max-width: 90%;   /* keep photo from overflowing */
-    max-height: 80%;  /* optional: ensures it stays visible */
+  img {
+    max-width: 90%;
+    max-height: 90%;
     object-fit: contain;
   }
 
   .controls {
-    margin-top: 20px; /* spacing between photo and controls */
+    margin-top: 20px;
+  }
+
+  button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
   }
 </style>
 </head>
 <body>
-  <img src="your-photo.jpg" alt="Centered" class="photo">
-  <div class="controls">
-    <!-- your buttons or links -->
-    <button>Button 1</button>
-    <button>Button 2</button>
+  <div>
+    <img src="your-photo.jpg" alt="Steven Day Carter">
+    <div class="controls">
+      <button>Button 1</button>
+      <button>Button 2</button>
+    </div>
   </div>
 </body>
 </html>
