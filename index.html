@@ -1,22 +1,66 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Steven Day Carter</title>
   <style>
-    body {
+    /* Keep the black background and center content */
+    html, body {
+      height: 100%;
       margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #000000;
-      padding: 40px 0;
+      background: #000;
     }
+
+    /* Use the safe-area insets so the image never sits under iOS chrome.
+       Provide fallbacks for older Safari with constant(). */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      /* top right bottom left:
+         use env() with a small extra gap (40px) so controls don't overlap */
+      padding: calc(20px + env(safe-area-inset-top, 0)) 
+               calc(16px + env(safe-area-inset-right, 0))
+               calc(40px + env(safe-area-inset-bottom, 0))
+               calc(16px + env(safe-area-inset-left, 0));
+      box-sizing: border-box;
+    }
+
+    /* Anchor should not change layout; remove default link outlines on image */
+    a { display: inline-block; text-decoration: none; }
+
     img {
+      display: block;
       max-width: 100%;
+      /* important: limit max-height so the image will never be larger than the
+         viewport minus the safe areas and padding. The 80px is an extra buffer. */
+      max-height: calc(100vh - (env(safe-area-inset-top, 0) + env(safe-area-inset-bottom, 0) + 80px));
       height: auto;
+      box-sizing: border-box;
+    }
+
+    /* legacy Safari iOS support */
+    @supports (padding: constant(safe-area-inset-bottom)) {
+      body {
+        padding: calc(20px + constant(safe-area-inset-top))
+                 calc(16px + constant(safe-area-inset-right))
+                 calc(40px + constant(safe-area-inset-bottom))
+                 calc(16px + constant(safe-area-inset-left));
+      }
+      img {
+        max-height: calc(100vh - (constant(safe-area-inset-top) + constant(safe-area-inset-bottom) + 80px));
+      }
+    }
+
+    /* optional: small screens — reduce buffer */
+    @media (max-width: 420px) {
+      body {
+        padding-top: calc(12px + env(safe-area-inset-top, 0));
+        padding-bottom: calc(24px + env(safe-area-inset-bottom, 0));
+      }
+      img { max-height: calc(100vh - (env(safe-area-inset-top,0) + env(safe-area-inset-bottom,0) + 48px)); }
     }
   </style>
 </head>
@@ -26,4 +70,3 @@
   </a>
 </body>
 </html>
-
