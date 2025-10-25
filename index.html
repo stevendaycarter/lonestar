@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centered Photo with Controls</title>
+<title>SDC</title>
 <style>
   html, body {
     margin: 0;
@@ -14,35 +14,25 @@
   body {
     display: flex;
     flex-direction: column;
-  }
-
-  .photo-container {
-    flex: 1; /* take up remaining space above controls */
-    display: flex;
-    justify-content: center; /* horizontal centering */
-    align-items: center;     /* vertical centering */
+    justify-content: center; /* vertical centering */
+    align-items: center;     /* horizontal centering */
   }
 
   .photo {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 90%;   /* keep photo from overflowing */
+    max-height: 80%;  /* optional: ensures it stays visible */
     object-fit: contain;
   }
 
   .controls {
-    flex: 0 0 auto; /* controls take up only their natural height */
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* space between buttons */
-    padding: 10px;
+    margin-top: 20px; /* spacing between photo and controls */
   }
 </style>
 </head>
 <body>
-  <div class="photo-container">
-    <img src="your-photo.jpg" alt="Centered Photo" class="photo">
-  </div>
+  <img src="your-photo.jpg" alt="Centered" class="photo">
   <div class="controls">
+    <!-- your buttons or links -->
     <button>Button 1</button>
     <button>Button 2</button>
   </div>
