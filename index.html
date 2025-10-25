@@ -1,72 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Steven Day Carter</title>
-  <style>
-    /* Keep the black background and center content */
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #000;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centered Photo with Controls</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
 
-    /* Use the safe-area insets so the image never sits under iOS chrome.
-       Provide fallbacks for older Safari with constant(). */
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      /* top right bottom left:
-         use env() with a small extra gap (40px) so controls don't overlap */
-      padding: calc(20px + env(safe-area-inset-top, 0)) 
-               calc(16px + env(safe-area-inset-right, 0))
-               calc(40px + env(safe-area-inset-bottom, 0))
-               calc(16px + env(safe-area-inset-left, 0));
-      box-sizing: border-box;
-    }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
 
-    /* Anchor should not change layout; remove default link outlines on image */
-    a { display: inline-block; text-decoration: none; }
+  .photo-container {
+    flex: 1; /* take up remaining space above controls */
+    display: flex;
+    justify-content: center; /* horizontal centering */
+    align-items: center;     /* vertical centering */
+  }
 
-    img {
-      display: block;
-      max-width: 100%;
-      /* important: limit max-height so the image will never be larger than the
-         viewport minus the safe areas and padding. The 80px is an extra buffer. */
-      max-height: calc(100vh - (env(safe-area-inset-top, 0) + env(safe-area-inset-bottom, 0) + 80px));
-      height: auto;
-      box-sizing: border-box;
-    }
+  .photo {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
 
-    /* legacy Safari iOS support */
-    @supports (padding: constant(safe-area-inset-bottom)) {
-      body {
-        padding: calc(20px + constant(safe-area-inset-top))
-                 calc(16px + constant(safe-area-inset-right))
-                 calc(40px + constant(safe-area-inset-bottom))
-                 calc(16px + constant(safe-area-inset-left));
-      }
-      img {
-        max-height: calc(100vh - (constant(safe-area-inset-top) + constant(safe-area-inset-bottom) + 80px));
-      }
-    }
-
-    /* optional: small screens — reduce buffer */
-    @media (max-width: 420px) {
-      body {
-        padding-top: calc(12px + env(safe-area-inset-top, 0));
-        padding-bottom: calc(24px + env(safe-area-inset-bottom, 0));
-      }
-      img { max-height: calc(100vh - (env(safe-area-inset-top,0) + env(safe-area-inset-bottom,0) + 48px)); }
-    }
-  </style>
+  .controls {
+    flex: 0 0 auto; /* controls take up only their natural height */
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* space between buttons */
+    padding: 10px;
+  }
+</style>
 </head>
 <body>
-  <a href="https://www.youtube.com/channel/UC08QBFNXrnct_031Ts5bU9g">
-    <img src="lonestar.jpg" alt="Lone Star">
-  </a>
+  <div class="photo-container">
+    <img src="your-photo.jpg" alt="Centered Photo" class="photo">
+  </div>
+  <div class="controls">
+    <button>Button 1</button>
+    <button>Button 2</button>
+  </div>
 </body>
 </html>
